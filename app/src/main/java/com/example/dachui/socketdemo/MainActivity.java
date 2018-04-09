@@ -11,6 +11,8 @@ import android.widget.EditText;
 
 import com.example.dachui.socketdemo.socket.SocketClient;
 import com.example.dachui.socketdemo.socket.SocketServer;
+import com.example.dachui.socketdemo.socket.SocketUdpClient;
+import com.example.dachui.socketdemo.socket.SocketUdpServer;
 
 public class MainActivity extends AppCompatActivity {
     public static String TAG = MainActivity.class.getSimpleName();
@@ -62,6 +64,24 @@ public class MainActivity extends AppCompatActivity {
      */
     public void client(View v) {
         SocketClient server = new SocketClient();
+        new Thread(server).start();
+    }
+
+    /**
+     * 做为客户端
+     * @param v
+     */
+    public void udpserver(View v) {
+        SocketUdpServer server = new SocketUdpServer();
+        new Thread(server).start();
+    }
+
+    /**
+     * 做为客户端
+     * @param v
+     */
+    public void udpclient(View v) {
+        SocketUdpClient server = new SocketUdpClient();
         new Thread(server).start();
     }
 }

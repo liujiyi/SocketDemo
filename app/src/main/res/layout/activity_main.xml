@@ -24,4 +24,23 @@
         android:onClick="client"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:background="@color/colorPrimary"
+        android:text="udpserver"
+        android:onClick="udpserver"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:background="@color/colorPrimary"
+        android:text="udpclient"
+        android:onClick="udpclient"
+        />
+
 </LinearLayout>
