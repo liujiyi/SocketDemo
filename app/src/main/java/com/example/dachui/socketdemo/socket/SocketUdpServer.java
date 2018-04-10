@@ -2,14 +2,8 @@ package com.example.dachui.socketdemo.socket;
 
 import android.util.Log;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
 
 /**
  * <p>描述：socket服务器端</p>
@@ -42,21 +36,28 @@ public class SocketUdpServer implements Runnable {
             datagramSocket = new DatagramSocket(PORT);
             // DatagramPacket(byte buf[], int length),建立一个字节数组来接收UDP包
             datagramPacket = new DatagramPacket(receMsgs, receMsgs.length);
-            // receive()来等待接收UDP数据报
-            datagramSocket.receive(datagramPacket);
 
-            /****** 解析数据报****/
-            String receStr = new String(datagramPacket.getData(), 0, datagramPacket.getLength());
-            Log.d(TAG, "Server Rece:" + receStr);
-            Log.d(TAG, "Server Port:" + datagramPacket.getPort());
+            while (true) {
+                /**
+                 * 如果需要多客户端连接  在这里新建一个线程管理监听到的每一个客户端连接！！！
+                 *
+                 */
+                // receive()来等待接收UDP数据报 阻塞操作
+                datagramSocket.receive(datagramPacket);
 
-            /***** 返回ACK消息数据报*/
-            // 组装数据报
-            byte[] buf = "I receive the message".getBytes();
-            DatagramPacket sendPacket = new DatagramPacket(buf, buf.length, datagramPacket.getAddress(), datagramPacket.getPort());
-            // 发送消息
-            datagramSocket.send(sendPacket);
+                /****** 解析数据报****/
+                String receStr = new String(datagramPacket.getData(), 0, datagramPacket.getLength());
+                Log.d(TAG, "Client ip:" + datagramPacket.getAddress());
+                Log.d(TAG, "Client Port:" + datagramPacket.getPort());
+                Log.d(TAG, "Client msg:" + receStr);
 
+                /***** 返回ACK消息数据报*/
+                // 组装数据报
+                byte[] buf = "I receive the message".getBytes();
+                DatagramPacket sendPacket = new DatagramPacket(buf, buf.length, datagramPacket.getAddress(), datagramPacket.getPort());
+                // 发送消息
+                datagramSocket.send(sendPacket);
+            }
         } catch (Exception e) {
             Log.d(TAG, "Exception:" + e);
         } finally {

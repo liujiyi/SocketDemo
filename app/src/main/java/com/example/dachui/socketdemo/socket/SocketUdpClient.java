@@ -41,21 +41,27 @@ public class SocketUdpClient implements Runnable {
             // 初始化datagramSocket,注意与前面Server端实现的差别
             datagramSocket = new DatagramSocket();
             // 使用DatagramPacket(byte buf[], int length, InetAddress address, int port)函数组装发送UDP数据报
-            String sendStr = "SendString";
+            String sendStr = "I am client!!!";
             byte[] buf = sendStr.getBytes();
             InetAddress address = InetAddress.getByName(netAddress);
             datagramPacket = new DatagramPacket(buf, buf.length, address, PORT);
-            // 发送数据
-            datagramSocket.send(datagramPacket);
 
             /*** 接收数据***/
             byte[] receBuf = new byte[1024];
             DatagramPacket recePacket = new DatagramPacket(receBuf, receBuf.length);
-            datagramSocket.receive(recePacket);
 
-            String receStr = new String(recePacket.getData(), 0, recePacket.getLength());
-            Log.d(TAG, "Client Rece Ack:" + receStr);
-            Log.d(TAG, recePacket.getPort() + "");
+            int count = 50;
+            while (count > 0) {
+                count--;
+                // 发送数据
+                datagramSocket.send(datagramPacket);
+
+                datagramSocket.receive(recePacket);
+
+                String receStr = new String(recePacket.getData(), 0, recePacket.getLength());
+                Log.d(TAG, "Server msg:" + receStr);
+                Log.d(TAG, recePacket.getPort() + "");
+            }
         } catch (Exception e) {
             Log.d(TAG, "Exception:" + e);
         } finally {
