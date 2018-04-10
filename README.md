@@ -10,14 +10,16 @@ socket编程
 
  *     基于UDP协议
  *  详见代码
-  *    SocketUdpServer
+   *   SocketUdpServer
    *   SocketUdpClient
-  *    在不知道对方ip地址的情况的 使用MulticastSockek广播ip地址
+   
+ *  MulticastSockek
+ *  在不知道对方ip地址的情况的 使用MulticastSockek广播ip地址
  *  详见代码
     *   MulticastSocketServer
-   *    MulticastSocketClient
+    *   MulticastSocketClient
 
- *   ap模式通信
+ * ap模式通信
  *     ApActivity
  * ap模式进行数据传输
  * 服务器端的手机发出热点
