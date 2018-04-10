@@ -17,3 +17,8 @@ socket编程
      MulticastSocketServer
      MulticastSocketClient
 
+  ap模式通信
+    ApActivity
+ * ap模式进行数据传输
+ * 服务器端的手机发出热点
+ * 客户端手机连接该热点进行通信

@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 
 import com.example.dachui.socketdemo.socket.SocketClient;
 import com.example.dachui.socketdemo.socket.SocketServer;
@@ -92,6 +91,15 @@ public class MainActivity extends AppCompatActivity {
      */
     public void MulticastSocket(View v) {
         Intent intent = new Intent(this, MulticastActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * 做为客户端
+     * @param v
+     */
+    public void APmodel(View v) {
+        Intent intent = new Intent(this, ApActivity.class);
         startActivity(intent);
     }
 }
