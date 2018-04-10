@@ -12,3 +12,8 @@ socket编程
  详见代码
     SocketUdpServer
     SocketUdpClient
+    在不知道对方ip地址的情况的 使用MulticastSockek广播ip地址
+ 详见代码
+     MulticastSocketServer
+     MulticastSocketClient
+
