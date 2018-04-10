@@ -1,27 +1,27 @@
 package com.example.dachui.socketdemo;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 
+import com.example.dachui.socketdemo.socket.MulticastSocketClient;
+import com.example.dachui.socketdemo.socket.MulticastSocketServer;
 import com.example.dachui.socketdemo.socket.SocketClient;
 import com.example.dachui.socketdemo.socket.SocketServer;
 import com.example.dachui.socketdemo.socket.SocketUdpClient;
 import com.example.dachui.socketdemo.socket.SocketUdpServer;
 
-public class MainActivity extends AppCompatActivity {
-    public static String TAG = MainActivity.class.getSimpleName();
+public class MulticastActivity extends AppCompatActivity {
+    public static String TAG = MulticastActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_multicast);
 
         getIp();
     }
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
      * @param v
      */
     public void server(View v) {
-        SocketServer server = new SocketServer();
+        MulticastSocketServer server = new MulticastSocketServer();
         new Thread(server).start();
     }
 
@@ -64,34 +64,7 @@ public class MainActivity extends AppCompatActivity {
      * @param v
      */
     public void client(View v) {
-        SocketClient server = new SocketClient();
+        MulticastSocketClient server = new MulticastSocketClient();
         new Thread(server).start();
-    }
-
-    /**
-     * 做为客户端
-     * @param v
-     */
-    public void udpserver(View v) {
-        SocketUdpServer server = new SocketUdpServer();
-        new Thread(server).start();
-    }
-
-    /**
-     * 做为客户端
-     * @param v
-     */
-    public void udpclient(View v) {
-        SocketUdpClient server = new SocketUdpClient();
-        new Thread(server).start();
-    }
-
-    /**
-     * 做为客户端
-     * @param v
-     */
-    public void MulticastSocket(View v) {
-        Intent intent = new Intent(this, MulticastActivity.class);
-        startActivity(intent);
     }
 }
